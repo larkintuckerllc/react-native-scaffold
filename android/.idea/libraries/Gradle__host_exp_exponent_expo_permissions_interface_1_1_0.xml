@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: host.exp.exponent:expo-permissions-interface-1.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-permissions-interface-1.1.0.aar/1a20bc2ba15219503a98759b10dc2e19/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/expo-permissions-interface-1.1.0.aar/1a20bc2ba15219503a98759b10dc2e19/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../node_modules/expokit/maven/host/exp/exponent/expo-permissions-interface/1.1.0/expo-permissions-interface-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,4 @@
+#Mon Oct 08 10:33:56 EDT 2018
+base.0=/home/sckmkny/Documents/react-native-scaffold/android/app/build/intermediates/transforms/dexMerger/devMinSdkDevKernel/debug/6
+path.0=classes.dex
+renamed.0=classes.dex

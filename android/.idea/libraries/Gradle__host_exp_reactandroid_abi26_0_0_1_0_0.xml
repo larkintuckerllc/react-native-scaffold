@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: host.exp:reactandroid-abi26_0_0-1.0.0">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/reactandroid-abi26_0_0-1.0.0.aar/787e221fe35f267cc4d3073386a5e724/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/reactandroid-abi26_0_0-1.0.0.aar/787e221fe35f267cc4d3073386a5e724/jars/libs/infer-annotations-4.0.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/reactandroid-abi26_0_0-1.0.0.aar/787e221fe35f267cc4d3073386a5e724/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/reactandroid-abi26_0_0-1.0.0.aar/787e221fe35f267cc4d3073386a5e724/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

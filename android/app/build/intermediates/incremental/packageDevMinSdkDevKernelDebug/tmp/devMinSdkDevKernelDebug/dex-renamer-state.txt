@@ -1,0 +1,16 @@
+#Mon Oct 08 12:32:16 EDT 2018
+path.3=classes3.dex
+path.2=classes2.dex
+path.1=classes.dex
+renamed.4=classes5.dex
+path.0=classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+base.4=/home/sckmkny/Documents/react-native-scaffold/android/app/build/intermediates/transforms/dexMerger/devMinSdkDevKernel/debug/10
+renamed.0=classes.dex
+base.3=/home/sckmkny/Documents/react-native-scaffold/android/app/build/intermediates/transforms/dexMerger/devMinSdkDevKernel/debug/10
+base.2=/home/sckmkny/Documents/react-native-scaffold/android/app/build/intermediates/transforms/dexMerger/devMinSdkDevKernel/debug/10
+base.1=/home/sckmkny/Documents/react-native-scaffold/android/app/build/intermediates/transforms/dexMerger/devMinSdkDevKernel/debug/10
+base.0=/home/sckmkny/Documents/react-native-scaffold/android/app/build/intermediates/transforms/dexMerger/devMinSdkDevKernel/debug/18
+path.4=classes4.dex
