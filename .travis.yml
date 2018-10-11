@@ -1,0 +1,7 @@
+language: node_js
+node_js: lts/*
+install: true
+script:
+  - echo $TRAVIS_EVENT_TYPE
+  - echo $TRAVIS_BRANCH
+  - echo $TRAVIS_PULL_REQUEST
