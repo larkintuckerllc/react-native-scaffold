@@ -1,0 +1,28 @@
+matrix:
+  include:
+    - language: node_js
+      node_js: lts/*
+      sudo: true
+      before_install:
+        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
+        - sudo apt-get update && sudo apt-get install yarn
+        - yarn global add expo-cli@2.2.0
+        - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+      cache:
+        yarn: true
+      install:
+        - yarn install
+      script:
+        - expo publish --release-channel $TRAVIS_PULL_REQUEST 
+      branches:
+        only:
+          - develop
+    - language: node_js
+      node_js: lts/*
+      install: true
+      script: echo "SPECIAL"
+      branches:
+        only:
+          - develop-native
+          - master
