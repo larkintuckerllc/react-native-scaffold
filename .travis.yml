@@ -1,6 +1,8 @@
 matrix:
   include:
-    - language: node_js
+    - # require the branch name to be develop
+      if: branch = develop
+      language: node_js
       node_js: lts/*
       sudo: true
       before_install:
@@ -15,14 +17,15 @@ matrix:
         - yarn install
       script:
         - expo publish --release-channel $TRAVIS_PULL_REQUEST 
-      branches:
-        only:
-          - develop
-    - language: node_js
+    - # require the branch name to be develop-native
+      if: branch = develop-native
+      language: node_js
       node_js: lts/*
       install: true
-      script: echo "SPECIAL"
-      branches:
-        only:
-          - develop-native
-          - master
+      script: echo "DEVELOP NATIVE"
+    - # require the branch name to be master
+      if: branch = master
+      language: node_js
+      node_js: lts/*
+      install: true
+      script: echo "MASTER"
