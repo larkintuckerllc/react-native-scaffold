@@ -50,7 +50,12 @@ matrix:
       if: branch = develop-native
       language: node_js
       node_js: lts/*
-      install: true
+      before_install:
+        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
+        - sudo apt-get update && sudo apt-get install yarn
+      install:
+        - yarn install
       script:
         - node deploy.js
     - # require the branch name to be master
