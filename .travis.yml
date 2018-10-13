@@ -47,4 +47,4 @@ matrix:
       language: node_js
       node_js: lts/*
       install: true
-      script: echo "MASTER"
+      script: echo "MASTER BRANCH"
