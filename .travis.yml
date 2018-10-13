@@ -26,7 +26,9 @@ matrix:
           - platform-tools
           - tools
           - build-tools-26.0.2
+          - build-tools-27.0.3
           - android-26
+          - android-27
           - addon-google_apis-google-26
       sudo: true
       before_install:
@@ -47,4 +49,4 @@ matrix:
       language: node_js
       node_js: lts/*
       install: true
-      script: echo "MASTER"
+      script: echo "MASTER BRANCH"
