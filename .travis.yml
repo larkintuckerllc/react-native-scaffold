@@ -9,7 +9,7 @@ matrix:
         - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
         - sudo apt-get update && sudo apt-get install yarn
-        - yarn global add expo-cli@2.2.0
+        - sudo yarn global add expo-cli@2.2.0
         - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
       cache:
         yarn: true
@@ -35,7 +35,7 @@ matrix:
         - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
         - sudo apt-get update && sudo apt-get install yarn
-        - yarn global add expo-cli@2.2.0
+        - sudo yarn global add expo-cli@2.2.0
         - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
       install:
         - yarn install
@@ -47,4 +47,4 @@ matrix:
       language: node_js
       node_js: lts/*
       install: true
-      script: echo "MASTER"
+      script: echo "MASTER BRANCH"
