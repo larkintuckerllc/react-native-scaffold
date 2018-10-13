@@ -50,4 +50,4 @@ matrix:
       language: node_js
       node_js: lts/*
       install: true
-      script: echo "MASTER BRANCH"
+      script: echo "MASTER BRANCH TEST"
