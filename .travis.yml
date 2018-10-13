@@ -40,7 +40,8 @@ matrix:
       install:
         - yarn install
       script:
-        - expo publish --release-channel $TRAVIS_PULL_REQUEST 
+        - expo publish
+        - cd android && ./gradlew assembleRelease
     - # require the branch name to be master
       if: branch = master
       language: node_js
