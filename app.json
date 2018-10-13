@@ -5,7 +5,10 @@
     "slug": "react-native-scaffold",
     "privacy": "public",
     "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,6 +25,16 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "isDetached": true,
+    "detach": {
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.8.1-sdk30.0.0-271c32ab-0715-4dfb-8270-ecead3679bb4.tar.gz"
+    },
+    "scheme": "exp4e136fe967344274b26087fb6a8e6771",
+    "android": {
+      "package": "com.larkintuckerllc.reactnativescaffold",
+      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
     }
   }
 }
