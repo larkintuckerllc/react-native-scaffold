@@ -1,54 +1,66 @@
 matrix:
   include:
-    - # require the branch name to be develop
-      if: branch = develop
-      language: node_js
-      node_js: lts/*
-      sudo: true
-      before_install:
-        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
-        - sudo apt-get update && sudo apt-get install yarn
-        - sudo npm install -g expo-cli@2.2.0
-        - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-      cache:
-        yarn: true
-      install:
-        - yarn install
-      script:
-        - expo publish --release-channel $TRAVIS_PULL_REQUEST 
-    - # require the branch name to be develop-native
-      if: branch = develop-native
-      language: android
-      android:
-        components:
-          - tools
-          - platform-tools
-          - tools
-          - build-tools-26.0.2
-          - build-tools-27.0.3
-          - android-26
-          - android-27
-          - addon-google_apis-google-26
-      sudo: true
-      before_install:
-        - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-        - sudo apt-get install -y nodejs
-        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
-        - sudo apt-get update && sudo apt-get install yarn
-        - sudo npm install -g expo-cli@2.2.0
-        - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-      install:
-        - yarn install
-      script:
-        - expo publish
-        - cd android && ./gradlew assembleRelease
-      addons:
-        artifacts: true
-    - # require the branch name to be master
-      if: branch = master
-      language: node_js
-      node_js: lts/*
-      install: true
-      script: echo "MASTER BRANCH"
+  - if: branch = develop
+    language: node_js
+    node_js: lts/*
+    sudo: true
+    before_install:
+    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    - sudo apt-get update && sudo apt-get install yarn
+    - sudo npm install -g expo-cli@2.2.0
+    - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+    cache:
+      yarn: true
+    install:
+    - yarn install
+    script:
+    - expo publish --release-channel $TRAVIS_PULL_REQUEST
+  - if: branch = XXdevelop-native
+    language: android
+    android:
+      components:
+      - tools
+      - platform-tools
+      - tools
+      - build-tools-26.0.2
+      - build-tools-27.0.3
+      - android-26
+      - android-27
+      - addon-google_apis-google-26
+    sudo: true
+    before_install:
+    - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    - sudo apt-get install -y nodejs
+    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    - sudo apt-get update && sudo apt-get install yarn
+    - sudo npm install -g expo-cli@2.2.0
+    - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+    install:
+    - yarn install
+    script:
+    - expo publish
+    - cd android && ./gradlew assembleRelease && cd ..
+  - if: branch = develop-native
+    language: node_js
+    node_js: lts/*
+    install: true
+    script: true
+    before_deploy:
+    - mkdir deploy
+    - cp package.json deploy/${TRAVIS_PULL_REQUEST}.apk
+    deploy:
+      provider: s3
+      bucket: reactnativescaffold
+      skip_cleanup: true
+      access_key_id:
+        secure: DqmNYYcWD1g/N8Cy2+XNNBe0VOCBKyyIti/3/AaYCThY7Bo1xdJq7nKOeYHL1o1EOKoJZ4HXkiITeU29vjPxn45REmwNoguPfc8lf6bFY0ofqW4SuanmEpzASeiKvbdTheKqyyxnlrEvkSB1LK/xUB4WM/7cL7mAJBJjpPGJsl/8VjaVXdESD5icKV+X8ARMvKPzCLXLgfMmH6cEPUUi3B8y/OknL4b0/u9RUuBMd7DwCvlLeLrLuu+3eNWjogD/i2fm4UuDxAcxzrNd3xAS005gTHA4Y3CE7OV9y8F/WQVXYe+xTCjz8GIxbcdYhLQ5c9vNNsKNb5Xw/UGUCRye3NFEx1mIEeO2licRu4jCXCcz/uSv0+X+/hodyRsMaVdSzSEAGnQ4P+aANClGsxC/OS2x/h5csHFXvt+smWCGU8RkG3dQtikfhcPOHmcT2vacmRbVLjsZSFtEMgmBErA/UsV1IfKJVAfjEROUm8ktDiBI2A2q0oREDvGGpsGcqOoC45+bxBiP9L/a6Yj5cGoZxKXZuynZKcr1To5NitYUK74b5GQWCSOPYeH4QK1LIPmQeIXtBNJnvf4YOQFLMdruz9tU+E7bTE0Uo5Vs27w6YZAL4+gOsnOIDwhEwG7XmWQ74YKiegMKOJGJJLmRTfrFcsQKcnDmarCK27NL7vZpCeY=
+      secret_access_key:
+        secure: sSHclnZhh7lQVdxWApXAqxLLDBjXdfTe1+QBsEXzxEGCBMR0dLeo/IFh8kdrlIbG0mlCeboD+aZsl2h2AsrJRQMXTSCSeNDHDNILUL0WGu++r6wvwiRLG2d+PypcPkMOjaZNLblIXvfHVgvPavW/s1yiVVUR4RZZ1KetOfsdjbk+8fJREjp7ywaPf2WZzxadg53bWTKYfDLb7Mvxhy936f9gTYdmEo9I6NHZgngnlZmwL9hBFHcyRhBJYTxMmlOMZ71FdUy9+t4pHRoA/fDAGZ2zIXG6Z9AbJN+n529kmb3MfSdI/oq3YJGyyThKEwPis1dt8HiReCIcbt2z5meEbZ+rmHnb03YPLZzdI/nHZB6RTn+ZPcb4dzro6DOGF5OIeHerNM4JnuY1xY3br264Qs1lZixw4RuR3/XT9TZVVaIKgDZhInf6Bqoil+VG0SbVLni7d7BTfHbBKvB9KjkIEHvxSwETXMfUY64z3kX2AwVHWx8Xw2KaGz8fj2QwGrQaEOqOg2Izl3PK1AjVNrCFyQh1efS6GFr/3kPXqWNQ4fXdhw/25ldm450NTW/EuspP3cfFbOnW3gcFWqcl7NQyDbqkchOfUOMcJ/xAni6xtKvPnexm1epLivn0Zbfr29cPMXL+m8RiqGaSx/C5in+94v6zeVzILZ0sd/1zSXNTCQM=
+      local_dir: deploy
+  - if: branch = master
+    language: node_js
+    node_js: lts/*
+    install: true
+    script: echo "MASTER BRANCH TESTING"
