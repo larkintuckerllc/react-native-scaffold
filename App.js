@@ -6,7 +6,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>version: {Constants.manifest.version}</Text>
+        <Text>App Version: {Constants.manifest.version}</Text>
       </View>
     );
   }
