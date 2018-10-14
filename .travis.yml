@@ -32,8 +32,8 @@ matrix:
           - addon-google_apis-google-26
       sudo: true
       before_install:
-        - openssl aes-256-cbc -K $encrypted_e67136c2a67e_key -iv $encrypted_e67136c2a67e_iv -in gradle.properties.enc -out gradle.properties -d
-        - openssl aes-256-cbc -K $encrypted_4d54904b9de4_key -iv $encrypted_4d54904b9de4_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
+        - cd android && openssl aes-256-cbc -K $encrypted_e67136c2a67e_key -iv $encrypted_e67136c2a67e_iv -in gradle.properties.enc -out gradle.properties -d && cd ..
+        - cd android/app openssl aes-256-cbc -K $encrypted_4d54904b9de4_key -iv $encrypted_4d54904b9de4_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d & cd ../..
         - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
         - sudo apt-get install -y nodejs
         - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
