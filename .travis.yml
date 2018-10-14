@@ -31,9 +31,12 @@ matrix:
           - android-27
           - addon-google_apis-google-26
       sudo: true
+      env:
+        global:
+          secure: "AeaYZ4rpZeFrXIjvVMuSdetQopoc3wdQD763szNzrsaNcBmZmNmJNi34hja4h0Plq8OOJDhUyJxYPOQdI1PT4OwjnzWjBPpKjPYDl/eArO2PKUL5BL39/I8WtMNxg+ycR4pKjdqDu+mNci3qKUK9bi+DqdRvQqAasJppiBmbeWSQF95bdSSiqaa8r8OPFOeLHH39HHVkfCJenzeQnllEDE4DVNTlYzKDJg3sv5n0OW/tlUt9lpzqQ/EtdGW3G/pxRRoWHS6AyrRnDt/IszBmYYDgcZ9kWpnXsdAzZ4tCCJ+AlzRtCwGrLws16AQBBfcQqcvgALbcQ2tR7qarmUXXJHv2p0wTK/67xbjARx3dAUJmbMjd7oBhEGsnZDreiWn4hlkH3wyHjKtgRt/80m+sbdR4tJFTRWVIV8jOcA+zwMjMCJ/fE80Obq/z6jH+GpIkuQ1hIC9uvWpxyrn0mIiVmTAlTtYmA2Yj4UBpXfAl08vAdZuwGD8QwfPOt3/BbsV2Krk0fGDBLAS0RMVktwYc9psNY2gJXjgt0dE/PBMIkOkFjxFXzJx/nuv+k7QRJFZL6TWQNtuPNIKdTkopnVvwArlU6HEo8V0bi/bnNMSCerIU8vXG8YbyX7xg861TSPYpHqeDcwq9aA6DelA6mpm40aSbNJkbit+PzSZOtzEsw0U="
       before_install:
-        - cd android && openssl aes-256-cbc -K $encrypted_e67136c2a67e_key -iv $encrypted_e67136c2a67e_iv -in gradle.properties.enc -out gradle.properties -d && cd ..
-        - cd android/app openssl aes-256-cbc -K $encrypted_4d54904b9de4_key -iv $encrypted_4d54904b9de4_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d & cd ../..
+        - cd android && echo $gpg_password | gpg --passphrase-fd 0 gradle.properties.gpg && cd .. 
+        - cd android/app && echo $gpg_password | gpg --passphrase-fd 0 my-release-key.keystore.gpg && cd ../.. 
         - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
         - sudo apt-get install -y nodejs
         - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
