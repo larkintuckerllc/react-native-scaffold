@@ -7,7 +7,7 @@ if [ "$NEVERCODE_PULL_REQUEST" = "true" ]
 then
     CHANNEL=$NEVERCODE_PULL_REQUEST_NUMBER
 else
-    CHANNEL="develop-native"
+    CHANNEL="nevercode"
 fi
 
 npm install -g expo-cli@2.2.0
