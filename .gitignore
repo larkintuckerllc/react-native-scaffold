@@ -1,6 +1,3 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
-android/gradle.properties
-android/app/my-release-key.keystore
-
