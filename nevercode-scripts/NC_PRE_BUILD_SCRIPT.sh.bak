@@ -13,5 +13,5 @@ fi
 npm install -g expo-cli@2.2.0
 expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 expo publish --release-channel $CHANNEL
-sed -i "s/react-native-scaffold/react-native-scaffold?release-channel=${CHANNEL}/" android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
-sed -i "s/default/${CHANNEL}/" android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
+sed -i'.original' -e "s/react-native-scaffold/react-native-scaffold?release-channel=${CHANNEL}/" android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
+sed -i'.original' -e "s/default/${CHANNEL}/" android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
