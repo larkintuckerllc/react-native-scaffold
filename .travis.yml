@@ -32,6 +32,8 @@ matrix:
           - addon-google_apis-google-26
       sudo: true
       before_install:
+        - cd android && echo $GPG_PASSWORD | gpg --passphrase-fd 0 gradle.properties.gpg && cd .. 
+        - cd android/app && echo $GPG_PASSWORD | gpg --passphrase-fd 0 my-release-key.keystore.gpg && cd ../.. 
         - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
         - sudo apt-get install -y nodejs
         - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -42,11 +44,13 @@ matrix:
       install:
         - yarn install
       script:
-        - expo publish
-        - cd android && ./gradlew assembleRelease
+        - expo publish --release-channel $TRAVIS_PULL_REQUEST 
+        - sh release-channel-patch.sh
+        - cd android && ./gradlew assembleRelease && cd ..
+        - node deploy.js
     - # require the branch name to be master
       if: branch = master
       language: node_js
       node_js: lts/*
       install: true
-      script: echo "MASTER BRANCH"
+      script: echo "MASTER BRANCH TEST"
