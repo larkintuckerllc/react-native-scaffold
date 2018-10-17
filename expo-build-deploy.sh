@@ -16,4 +16,15 @@ export CHANNEL=$CHANNEL
 expo publish --release-channel $CHANNEL
 sh release-channel-patch.sh
 cd android && ./gradlew assembleRelease && cd ..
-node deploy.js
+if [ "$TRAVIS_EVENT_TYPE" = "pull_request" ]
+then
+  node deploy.js
+else
+  if [ "$TRAVIS_BRANCH" = "develop-native" ]
+  then
+    node deploy.js
+  else
+    echo "HOCKEYAPP"
+  fi
+fi
+
