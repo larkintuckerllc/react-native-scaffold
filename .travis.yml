@@ -1,7 +1,6 @@
 matrix:
   include:
-    - # require PR and the branch name to be develop
-      if: type = pull_request
+    - # EXPO
       if: branch = develop
       language: node_js
       node_js: lts/*
@@ -17,10 +16,9 @@ matrix:
       install:
         - yarn install
       script:
-        - expo publish --release-channel $TRAVIS_PULL_REQUEST 
-    - # require PR and the branch name to be develop-native || release
-      if: type = pull_request
-      if: branch = branch IN (develop-native, release, master)
+        - sh expo.sh
+    - # EXPO AND BUILD AND DEPLOY
+      if: branch IN (develop-native, release, master)
       language: android
       android:
         components:
@@ -43,44 +41,9 @@ matrix:
         - sudo apt-get update && sudo apt-get install yarn
         - sudo npm install -g expo-cli@2.2.0
         - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+      cache:
+        yarn: true
       install:
         - yarn install
       script:
-        - export CHANNEL=$TRAVIS_PULL_REQUEST
-        - expo publish --release-channel $CHANNEL
-        - sh release-channel-patch.sh
-        - cd android && ./gradlew assembleRelease && cd ..
-        - node deploy.js
-    - # require push and the branch name to be release || master
-      if: type = push
-      if: branch = branch IN (release, master)
-      language: android
-      android:
-        components:
-          - tools
-          - platform-tools
-          - tools
-          - build-tools-26.0.2
-          - build-tools-27.0.3
-          - android-26
-          - android-27
-          - addon-google_apis-google-26
-      sudo: true
-      before_install:
-        - cd android && echo $GPG_PASSWORD | gpg --passphrase-fd 0 gradle.properties.gpg && cd .. 
-        - cd android/app && echo $GPG_PASSWORD | gpg --passphrase-fd 0 my-release-key.keystore.gpg && cd ../.. 
-        - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-        - sudo apt-get install -y nodejs
-        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
-        - sudo apt-get update && sudo apt-get install yarn
-        - sudo npm install -g expo-cli@2.2.0
-        - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-      install:
-        - yarn install
-      script:
-        - sh set-channel.sh
-        - expo publish --release-channel $CHANNEL
-        - sh release-channel-patch.sh
-        - cd android && ./gradlew assembleRelease && cd ..
-        - echo "TODO HOCKEY APP DEPLOY"
+        - sh expo-build-deploy.sh
