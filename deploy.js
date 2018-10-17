@@ -5,8 +5,8 @@ const SRC_FILE_NAME = 'android/app/build/outputs/apk/prodMinSdkProdKernel/releas
 const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const AWS_BUCKET = process.env.AWS_BUCKET;
-const TRAVIS_PULL_REQUEST = process.env.TRAVIS_PULL_REQUEST;
-const DST_FILE_NAME = `${TRAVIS_PULL_REQUEST}.apk`;
+const CHANNEL = process.env.CHANNEL;
+const DST_FILE_NAME = `${CHANNEL}.apk`;
 const s3 = new AWS.S3({
     accessKeyId: AWS_ACCESS_KEY,
     secretAccessKey: AWS_SECRET_ACCESS_KEY,
