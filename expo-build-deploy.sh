@@ -22,9 +22,9 @@ then
 else
   if [ "$TRAVIS_BRANCH" = "develop-native" ]
   then
-    node deploy.js
+    node deploy-aws.js
   else
-    echo "HOCKEYAPP"
+    sh deploy-ha.sh
   fi
 fi
 
