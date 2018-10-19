@@ -46,4 +46,4 @@ matrix:
       install:
         - yarn install
       script:
-        - sh expo-build-deploy.sh
+        - sh expo.sh && sh android.sh
