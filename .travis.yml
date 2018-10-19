@@ -17,7 +17,7 @@ matrix:
         - yarn install
       script:
         - sh expo.sh
-    - # EXPO AND BUILD AND DEPLOY
+    - # ANDROID
       if: branch IN (develop-native, release, master)
       language: android
       android:
@@ -46,4 +46,4 @@ matrix:
       install:
         - yarn install
       script:
-        - sh expo.sh && sh android.sh
+        - sh android.sh

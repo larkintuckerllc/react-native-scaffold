@@ -12,5 +12,4 @@ else
     CHANNEL=$TRAVIS_BRANCH
   fi
 fi
-export CHANNEL=$CHANNEL
 expo publish --release-channel $CHANNEL
