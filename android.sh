@@ -18,13 +18,12 @@ sh release-channel-patch.sh
 cd android && ./gradlew assembleRelease && cd ..
 if [ "$TRAVIS_EVENT_TYPE" = "pull_request" ]
 then
-  node deploy.js
+  node android-aws.js
 else
   if [ "$TRAVIS_BRANCH" = "develop-native" ]
   then
-    node deploy-aws.js
+    node android-aws.js
   else
-    sh deploy-ha.sh
+    sh android-ha.sh
   fi
 fi
-
