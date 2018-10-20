@@ -8,7 +8,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "version": "json -I -f ./app.json -e 'this.expo.version=\"'$npm_package_version'\"' && git add ./app.json"
+    "version": "sh version-expo.sh && sh version-android.sh"
   },
   "dependencies": {
     "expo": "^30.0.1",
