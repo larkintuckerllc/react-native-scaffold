@@ -15,3 +15,4 @@ curl \
    -F "status=2" \
    -F "release_type=${RELEASE_TYPE}" \
    https://rink.hockeyapp.net/api/2/apps/upload
+

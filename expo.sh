@@ -13,3 +13,4 @@ else
   fi
 fi
 expo publish --release-channel $CHANNEL
+

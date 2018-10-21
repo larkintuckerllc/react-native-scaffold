@@ -8,3 +8,4 @@ BUMPED_VERSION_CODE=$(($VERSION_CODE + 1))
 sed "s/versionCode ${VERSION_CODE}/versionCode ${BUMPED_VERSION_CODE}/" $FILE_NAME
 sed "s/versionName '[^']+'/versionName '${PACKAGE_VERSION}'/" $FILE_NAME
 git add $FILE_NAME
+
