@@ -10,5 +10,6 @@ cache:
   - yarn
 install:
   - yarn install
-script: true
+script:
+  - sh ios.sh
 
