@@ -2,17 +2,6 @@ language: objective-c
 osx_image: xcode10
 podfile: ios/Podfile
 before_install:
-  - echo $GPG_PASSWORD_IOS | gpg --passphrase-fd 0 development-cert.cer.gpg
-  - echo $GPG_PASSWORD_IOS | gpg --passphrase-fd 0 reactnativescaffolddev.mobileprovision.gpg
-  - echo $GPG_PASSWORD_IOS | gpg --passphrase-fd 0 development-key.p12.gpg
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install 8.12.0
-  - brew install yarn --without-node
-  - npm install -g expo-cli@2.2.0
-  - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-cache:
-  - yarn
-install:
-  - yarn install
-script:
-  - sh ios.sh
-
+  - openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in development-cert.cer.enc -out development-cert.cer -d
+install: true
+script: true
