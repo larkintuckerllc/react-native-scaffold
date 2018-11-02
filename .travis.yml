@@ -8,9 +8,7 @@ before_install:
   - expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 cache:
   - yarn
-  - cocoapods
 install:
   - yarn install
-  - cd ios && pod install && cd ..
 script: true
 
