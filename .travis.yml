@@ -1,13 +1,12 @@
 language: objective-c
 osx_image: xcode10
 before_install:
-- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install 8.12.0
-- brew install yarn --without-node
-- openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in development-cert.cer.enc -out development-cert.cer -d
-- openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in development-key.p12.enc -out development-key.p12 -d
-- openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in reactnativescaffolddev.mobileprovision.enc -out reactnativescaffolddev.mobileprovision -d
+  - openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in secrets.tar.enc -out secrets.tar -d
+  - tar xvf secrets.tar
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install 8.12.0
+  - brew install yarn --without-node
 install:
-- yarn install
+  - yarn install
 script:
-- sh ios.sh
+  - sh ios.sh
 
