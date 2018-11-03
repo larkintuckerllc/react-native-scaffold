@@ -16,14 +16,16 @@ security import development-key.p12 -k ios-build.keychain -P $SECURITY_PASSWORD 
 security set-key-partition-list -S apple-tool:,apple: -s -k $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain > /dev/null
 # PROVISIONING PROFILE
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-cp reactnativescaffolddev.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+cp 00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
 # BUILD
 cd ios && xcodebuild \
   -workspace react-native-scaffold.xcworkspace \
   -scheme react-native-scaffold \
-  -sdk iphoneos12.0 \
+  -sdk iphoneos12.1 \
   -configuration Release \
   -archivePath $PWD/build/react-native-scaffold.xcarchive \
+  PROVISIONING_PROFILE="00e1eafa-154c-413b-ad49-8aaa90befb5e" \
+  CODE_SIGN_IDENTITY="iPhone Developer: John Tucker (WS374528YS)" \
   archive && cd ..
 # TODO MAKE PLIST FILE 
 # TODO MAKE EXPORT ARCHIVE

@@ -3,5 +3,5 @@ node_modules/**/*
 npm-debug.*
 development-cert.cer
 development-key.p12
-reactnativescaffolddev.mobileprovision
+00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision
 secrets.tar
