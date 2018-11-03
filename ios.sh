@@ -41,3 +41,4 @@ cd ios && xcodebuild \
   -archivePath $PWD/build/react-native-scaffold.xcarchive \
   -exportOptionsPlist $PWD/build/react-native-scaffold.xcarchive/Info.plist \
   -exportPath $PWD/build > /dev/null && cd ..
+
