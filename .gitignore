@@ -1,7 +1,6 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
-development-cert.cer
-development-key.p12
+development-cert.p12
 00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision
 secrets.tar
