@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode10.1
 before_install:
-    openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in secrets.tar.enc -out secrets.tar -d
+  - openssl aes-256-cbc -K $encrypted_91d26112053f_key -iv $encrypted_91d26112053f_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install 8.12.0
   - brew install yarn --without-node
