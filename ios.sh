@@ -14,3 +14,16 @@ security import AppleWWDRCA.cer -k ios-build.keychain -A
 security import development-cert.cer -k ios-build.keychain -A
 security import development-key.p12 -k ios-build.keychain -P $SECURITY_PASSWORD -A
 security set-key-partition-list -S apple-tool:,apple: -s -k $SECURITY_PASSWORD ios-build.keychain > /dev/null
+# PROVISIONING PROFILE
+mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+cp reactnativescaffolddev.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
+# BUILD
+cd ios && xcodebuild \
+  -workspace react-native-scaffold.xcworkspace \
+  -scheme react-native-scaffold \
+  -sdk iphoneos12.0 \
+  -configuration Release \
+  -archivePath $PWD/build/react-native-scaffold.xcarchive \
+  archive && cd ..
+# TODO MAKE PLIST FILE 
+# TODO MAKE EXPORT ARCHIVE
