@@ -4,3 +4,4 @@ npm-debug.*
 development-cert.cer
 development-key.p12
 reactnativescaffolddev.mobileprovision
+secrets.tar
