@@ -6,7 +6,7 @@ set -x
 # expo publish
 # CREATE KEY CHAIN
 security create-keychain -p $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain
-security default-keychain -s ios-build.keychain
+security default-keychain -d user -s ios-build.keychain
 security unlock-keychain -p $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain
 security set-keychain-settings -t 3600 -l ~/Library/Keychains/ios-build.keychain
 # IMPORT ASSETS INTO KEY CHAIN
