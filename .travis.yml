@@ -7,6 +7,7 @@ before_install:
   - brew install yarn --without-node
 install:
   - yarn install
+  - cd ios && pod install & cd ..
 script:
   - sh ios.sh
 

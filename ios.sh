@@ -1,10 +1,10 @@
 set -e
 set -x
 
-PROVISIONING_PROILE=00e1eafa-154c-413b-ad49-8aaa90befb5e
-# npm install -g expo-cli@2.2.0
-# expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
-# expo publish
+# EXPO PUBLISH
+npm install -g expo-cli@2.2.0
+expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+expo publish
 # CREATE KEY CHAIN
 security create-keychain -p $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain
 security default-keychain -d user -s ios-build.keychain
