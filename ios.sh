@@ -1,6 +1,7 @@
 set -e
 set -x
 
+PROVISIONING_PROILE=00e1eafa-154c-413b-ad49-8aaa90befb5e
 # npm install -g expo-cli@2.2.0
 # expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
 # expo publish
@@ -15,8 +16,8 @@ security import development-cert.p12 -k ios-build.keychain -P $SECURITY_PASSWORD
 security set-key-partition-list -S apple-tool:,apple: -s -k $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain > /dev/null
 # PROVISIONING PROFILE
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-cp 00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles
-# BUILD
+cp "00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision" ~/Library/MobileDevice/Provisioning\ Profiles
+# BUILD ARCHIVE
 cd ios && xcodebuild \
   -workspace react-native-scaffold.xcworkspace \
   -scheme react-native-scaffold \
@@ -25,6 +26,18 @@ cd ios && xcodebuild \
   -archivePath $PWD/build/react-native-scaffold.xcarchive \
   PROVISIONING_PROFILE="00e1eafa-154c-413b-ad49-8aaa90befb5e" \
   CODE_SIGN_IDENTITY="iPhone Developer: John Tucker (WS374528YS)" \
-  archive && cd ..
-# TODO MAKE PLIST FILE 
-# TODO MAKE EXPORT ARCHIVE
+  archive  > /dev/null && cd ..
+# EXPORT ARCHIVE
+sed -i.bak -E '/^\<dict\>/a\
+<key>provisioningProfiles</key>\
+  <dict>\
+    <key>com.larkintuckerllc.reactnativescaffold</key>\
+    <string>00e1eafa-154c-413b-ad49-8aaa90befb5e</string>\
+  </dict>\
+<key>ApplicationProperties</key>\
+' ios/build/react-native-scaffold.xcarchive/Info.plist
+cd ios && xcodebuild \
+  -exportArchive \
+  -archivePath $PWD/build/react-native-scaffold.xcarchive \
+  -exportOptionsPlist $PWD/build/react-native-scaffold.xcarchive/Info.plist \
+  -exportPath $PWD/build > /dev/null && cd ..
