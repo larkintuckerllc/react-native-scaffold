@@ -19,15 +19,7 @@ mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp "00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision" ~/Library/MobileDevice/Provisioning\ Profiles
 # BUILD ARCHIVE
 sudo gem install xcpretty
-cd ios && xcodebuild \
-  -workspace react-native-scaffold.xcworkspace \
-  -scheme react-native-scaffold \
-  -sdk iphoneos12.1 \
-  -configuration Release \
-  -archivePath $PWD/build/react-native-scaffold.xcarchive \
-  PROVISIONING_PROFILE="00e1eafa-154c-413b-ad49-8aaa90befb5e" \
-  CODE_SIGN_IDENTITY="iPhone Developer: John Tucker (WS374528YS)" \
-  archive | xcpretty && cd .. && exit ${PIPESTATUS[0]}
+sh ios-build.sh
 # EXPORT ARCHIVE
 sed -i.bak -E '/^\<dict\>/a\
 <key>provisioningProfiles</key>\
@@ -37,9 +29,5 @@ sed -i.bak -E '/^\<dict\>/a\
   </dict>\
 <key>ApplicationProperties</key>\
 ' ios/build/react-native-scaffold.xcarchive/Info.plist
-cd ios && xcodebuild \
-  -exportArchive \
-  -archivePath $PWD/build/react-native-scaffold.xcarchive \
-  -exportOptionsPlist $PWD/build/react-native-scaffold.xcarchive/Info.plist \
-  -exportPath $PWD/build | xcpretty && cd .. && exit ${PIPESTATUS[0]}
+sh ios-export.sh
 node ios-aws.js
