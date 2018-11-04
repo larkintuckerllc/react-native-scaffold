@@ -18,6 +18,7 @@ security set-key-partition-list -S apple-tool:,apple: -s -k $CUSTOM_KEYCHAIN_PAS
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp "00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision" ~/Library/MobileDevice/Provisioning\ Profiles
 # BUILD ARCHIVE
+sudo gem install xcpretty
 cd ios && xcodebuild \
   -workspace react-native-scaffold.xcworkspace \
   -scheme react-native-scaffold \
@@ -26,7 +27,7 @@ cd ios && xcodebuild \
   -archivePath $PWD/build/react-native-scaffold.xcarchive \
   PROVISIONING_PROFILE="00e1eafa-154c-413b-ad49-8aaa90befb5e" \
   CODE_SIGN_IDENTITY="iPhone Developer: John Tucker (WS374528YS)" \
-  archive  > /dev/null && cd ..
+  archive | xcpretty && cd .. && exit ${PIPESTATUS[0]}
 # EXPORT ARCHIVE
 sed -i.bak -E '/^\<dict\>/a\
 <key>provisioningProfiles</key>\
@@ -40,5 +41,5 @@ cd ios && xcodebuild \
   -exportArchive \
   -archivePath $PWD/build/react-native-scaffold.xcarchive \
   -exportOptionsPlist $PWD/build/react-native-scaffold.xcarchive/Info.plist \
-  -exportPath $PWD/build > /dev/null && cd ..
+  -exportPath $PWD/build | xcpretty && cd .. && exit ${PIPESTATUS[0]}
 

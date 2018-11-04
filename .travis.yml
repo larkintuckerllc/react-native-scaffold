@@ -1,6 +1,7 @@
 language: objective-c
 podfile: ios/Podfile
 osx_image: xcode10.1
+sudo: true
 cache:
   - yarn
   - cocoapods
