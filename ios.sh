@@ -20,6 +20,7 @@ cp "00e1eafa-154c-413b-ad49-8aaa90befb5e.mobileprovision" ~/Library/MobileDevice
 # BUILD ARCHIVE
 sudo gem install xcpretty
 sh ios-build.sh
+cd ..
 # EXPORT ARCHIVE
 sed -i.bak -E '/^\<dict\>/a\
 <key>provisioningProfiles</key>\
@@ -30,4 +31,5 @@ sed -i.bak -E '/^\<dict\>/a\
 <key>ApplicationProperties</key>\
 ' ios/build/react-native-scaffold.xcarchive/Info.plist
 sh ios-export.sh
+cd ..
 node ios-aws.js
