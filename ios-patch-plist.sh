@@ -1,4 +1,6 @@
 sed -i.bak -E '/^\<dict\>/a\
+<key>compileBitcode</key>
+<false/>
 <key>provisioningProfiles</key>\
 <dict>\
   <key>com.larkintuckerllc.reactnativescaffold</key>\
