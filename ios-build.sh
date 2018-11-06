@@ -1,3 +1,6 @@
+set -e
+set -x
+
 cd ios && xcodebuild \
   -workspace react-native-scaffold.xcworkspace \
   -scheme react-native-scaffold \
